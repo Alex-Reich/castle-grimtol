@@ -61,3 +61,65 @@ Your Game must implement the following features
 
 ### Finished?
 When You are finished please submit the url for your github repo to the gradebook.
+
+
+### Alex's Plan
+Goal: Get dressed and do all other "prepare for the day" tasks, get in car, and drive away
+Items: Car key, clothes, cell phone; other everyday task objects
+Rooms:
+    -Bedroom
+    -Bathroom
+    -Kitchen
+    -Garage
+    -Car
+Uses: 
+  -Car Key, use at car: found in kitchen. unlocks door, player enters. 
+  -Car Key: use inside car. Starts engine and drives away. Wins game.
+  -Clothes: found in bedroom. use anywhere. Player gets dressed.
+  -Remote Garage Door Opener: found in bedroom, opens garage door. 
+  -Deoderant: found in bathroom. use anywhere. Player applies deoderant.
+  -Toothpaste & toothbrush: use in bathroom. Player brushes teeth.
+  -Orange Juice: found in kitchen. If drank after brushing teeth player loses 1 health.
+  -Taco Bell Doritos Locos Taco: found in car. use anywhere. Player gains 1 health, then later loses 5 health. 
+  -Cell Phone: found in bedroom. use anywhere. Tells current time, 5 missed calls, 6 unread messages. All mention you needing to be somewhere fast! Player puts phone away after using.
+
+Start:
+It's dark. There is a strange scent in the air, a loud buzzing sound, and you feel as though you are wrapped up tightly, unable to move your extremities. Panic begins to set in.     -Eyes closed, need to open eyes
+
+You open your eyes and find yourself knotted in blankets on your bed. Light fills your bedroom through the window, it is morning. You determine the buzzing sound to be from your phone located on the floor across the room, next to a pile of your clothes you removed before falling asleep and a garage door opener. As you begin to fully awaken, you realize the strange scent is your own body odor. 
+
+What do you do?
+Objects: Clothes, phone, remote garage door opener
+Rooms: Bathroom, downstairs to kitchen
+
+Bathroom:
+
+
+Objects: Toothpaste & toothbrush, deoderant
+Rooms: Bedroom
+
+
+Kitchen:
+
+
+Objects: Car Keys, OJ
+Rooms: Bedroom, Garage
+
+
+Garage:
+
+
+
+Objects: 
+Rooms: Kitchen, Car
+
+
+
+
+Car:
+
+
+
+Objects: Taco Bell Doritos Locos Taco
+Rooms: Garage
+
