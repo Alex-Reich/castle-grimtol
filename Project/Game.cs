@@ -34,7 +34,7 @@ namespace CastleGrimtol.Project
             var room1 = new Room("Bedroom", "Description", ); 
             room1.Items.Add(new Item("Clothes", "The finest threads the thrift shop has to offer."));
             room1.Items.Add(new Item("Garage Door Opener", "One push and 'Whoo!'"));
-            room1.Items.Add(new Item("Cell Phone", ""));
+            room1.Items.Add(new Item("Cell Phone", "The coolest thing since sliced bread."));
             _rooms.Add(room1);
         }
     }

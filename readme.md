@@ -123,3 +123,8 @@ Car:
 Objects: Taco Bell Doritos Locos Taco
 Rooms: Garage
 
+
+
+Jump to end:
+Type "Go back to sleep"
+  -Player goes back to sleep and wakes up the next day, which is Saturday. No need to rush anywhere, you win!
