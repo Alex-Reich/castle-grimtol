@@ -90,20 +90,20 @@ You open your eyes and find yourself knotted in blankets on your bed. Light fill
 
 What do you do?
 Objects: Clothes, phone, remote garage door opener
-Rooms: Bathroom, downstairs to kitchen
+Rooms: East - Bathroom, South - downstairs to kitchen
 
 Bathroom:
 
 
 Objects: Toothpaste & toothbrush, deoderant
-Rooms: Bedroom
+Rooms: West - Bedroom
 
 
 Kitchen:
 
 
 Objects: Car Keys, OJ
-Rooms: Bedroom, Garage
+Rooms: North - Bedroom, West - Garage
 
 
 Garage:
@@ -111,7 +111,7 @@ Garage:
 
 
 Objects: 
-Rooms: Kitchen, Car
+Rooms: East - Kitchen, West - Car
 
 
 
@@ -121,7 +121,7 @@ Car:
 
 
 Objects: Taco Bell Doritos Locos Taco
-Rooms: Garage
+Rooms: East - Garage
 
 
 

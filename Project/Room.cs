@@ -8,20 +8,26 @@ namespace CastleGrimtol.Project
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Item> Items { get; set; }
-        public Room(string name, string description, List<Item> Items)
+        public Room(string name, string description)
         {
             Name = name;
             Description = description;
             Items = new List<Item>();
         }
 
-        public void PickUpItem(Item item)
+        public Dictionary<string, Room> exits = new Dictionary<string, Room>();
+
+        public Room Go(string direction)
         {
-            Items.Add(item);
+            if (exits.ContainsKey(direction)) {
+                return exits[direction];
+            }
+            return null;
         }
+
         public void UseItem(Item item)
         {
-            
+            throw new System.NotImplementedException();
         }
     }
 }
