@@ -33,10 +33,12 @@ namespace CastleGrimtol.Project
                             if (validRoom != null)
                             {
                                 CurrentRoom = CurrentRoom.Go(input[1]);
+                                Console.Clear();
                                 System.Console.WriteLine($"You are now in the {CurrentRoom.Name}");
                             }
                             else
                             {
+                                Console.Clear();
                                 System.Console.WriteLine("That is not a valid direction from this room.");
                                 System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
                             }
@@ -47,10 +49,12 @@ namespace CastleGrimtol.Project
                             if (validRoom != null)
                             {
                                 CurrentRoom = CurrentRoom.Go(input[1]);
+                                Console.Clear();
                                 System.Console.WriteLine($"You are now in the {CurrentRoom.Name}");
                             }
                             else
                             {
+                                Console.Clear();
                                 System.Console.WriteLine("That is not a valid direction from this room.");
                                 System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}.");
                             }
@@ -61,10 +65,12 @@ namespace CastleGrimtol.Project
                             if (validRoom != null)
                             {
                                 CurrentRoom = CurrentRoom.Go(input[1]);
+                                Console.Clear();
                                 System.Console.WriteLine($"You are now in the {CurrentRoom.Name}");
                             }
                             else
                             {
+                                Console.Clear();
                                 System.Console.WriteLine("That is not a valid direction from this room.");
                                 System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
                             }
@@ -75,10 +81,12 @@ namespace CastleGrimtol.Project
                             if (validRoom != null)
                             {
                                 CurrentRoom = CurrentRoom.Go(input[1]);
+                                Console.Clear();
                                 System.Console.WriteLine($"You are now in the {CurrentRoom.Name}");
                             }
                             else
                             {
+                                Console.Clear();
                                 System.Console.WriteLine("That is not a valid direction from this room.");
                                 System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
                             }
@@ -89,11 +97,21 @@ namespace CastleGrimtol.Project
                         // }
                         break;
                     case "look":
+                        Console.Clear();
                         System.Console.WriteLine($"{CurrentRoom.Name}: {CurrentRoom.Description}.");
                         System.Console.WriteLine("In the room you find:");
-                        foreach (var i in CurrentRoom.Items)
+                        if (CurrentRoom.Items.Count > 0)
                         {
-                            Console.WriteLine(i.Name);
+
+                            foreach (var i in CurrentRoom.Items)
+                            {
+                                Console.WriteLine(i.Name);
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("There are no items currently in this room.");
                         }
                         break;
                     case "help":
@@ -103,23 +121,20 @@ Use <ItemName> Uses an item in a room or from your inventory
 Take <ItemName> Places an item into the player inventory and removes it from the room
 Quit Quits the Game");
                         break;
-                    // case "take":
-                    // foreach (var i in CurrentRoom.Items)
-                    //     {
-                    //         Console.WriteLine(i.Name);
-                    //     }
-                    //     if (i.Name.contains(input[1]));
-                    //     {
-                    //         var validItem = CurrentRoom.Items.Find(item)
-                    //     }
-                    //     break;
+                    case "take":
+                        Console.Clear();
+                        TakeItem(input[1]);
+                        break;
+                    case "use":
+                        UseItem(input[1]);
+                        break;
                     case "quit":
                         playing = false;
                         Console.Clear();
                         System.Console.WriteLine("Thanks for playing!");
                         break;
                     default:
-                        System.Console.WriteLine("Please enter a proper action. Try 'help' if you are stuck.");
+                        System.Console.WriteLine("Please enter a proper action. Type 'help' if you are stuck.");
                         break;
                 }
 
@@ -136,44 +151,62 @@ Quit Quits the Game");
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             CreateRooms();
         }
-        public void PickUpItem(string itemName)
+        public void TakeItem(string itemName)
         {
-
+            foreach (var i in CurrentRoom.Items.ToArray())
+            {
+                var name = i.Name.ToLower();
+                if (name.Contains(itemName))
+                {
+                    CurrentPlayer.Inventory.Add(i);
+                    CurrentRoom.Items.Remove(i);
+                    System.Console.WriteLine($"You picked up {i.Name}");
+                    break;
+                }
+                else
+                {
+                    System.Console.WriteLine("There is nothing to pick up by that name.");
+                }
+            }
 
         }
         public void UseItem(string itemName)
         {
-            if (CurrentPlayer.Inventory.Count > 0)
-            {
+          
+                var item = CurrentPlayer.Inventory.Find(i => i.Name.Contains(itemName));
 
-                System.Console.WriteLine("Whatever");
-            }
-            else
-            {
-                System.Console.WriteLine("You don't have any items.");
-            }
+                if (CurrentPlayer.Inventory.Contains(item))
+                {
+                    System.Console.WriteLine($"{item.Description}");
+                }
+                if (!CurrentPlayer.Inventory.Contains(item))
+                {
+                    System.Console.WriteLine("You don't have the item you are trying to use.");
+                }
+            
         }
         public void CreateRooms()
         {
-            var bedroom = new Room("Bedroom", "Kinda messy, but also kinda clean. Exits: e -> bathroom, s -> kitchen");
-            var bathroom = new Room("Bathroom", "Don't forget your phone! Exits: w -> bedroom");
-            var kitchen = new Room("Kitchen", "There is a distinct lack of Cap'n Crunch in here. How sad. Exits: n -> bedroom, w -> garage");
-            var garage = new Room("Garage", "Cold, damp. Boxes of assorted junk line the walls. Exits: e -> kitchen, w -> car");
-            var car = new Room("Car", "It still runs. Exits: e -> garage");
-            bedroom.Items.Add(new Item("Clothes", "The finest threads the thrift shop has to offer."));
-            bedroom.Items.Add(new Item("Garage Door Opener", "One push and 'Whoo!'"));
+            var bedroom = new Room("Bedroom", "Kinda messy, but also kinda clean.    Exits: e -> bathroom, s -> kitchen");
+            var bathroom = new Room("Bathroom", "Don't forget your phone!   Exits: w -> bedroom");
+            var kitchen = new Room("Kitchen", "There is a distinct lack of Cap'n Crunch in here. How sad.   Exits: n -> bedroom, w -> garage");
+            var garage = new Room("Garage", "Cold, damp. Boxes of assorted junk line the walls.  Exits: e -> kitchen, w -> car");
+            var car = new Room("Car", "It still runs... Sometimes.   Exits: e -> garage");
+
+            bedroom.Items.Add(new Item("Clothes", "You put on your clothes... for the fourth day in a row."));
+            bedroom.Items.Add(new Item("Garage Door Opener", "A garage door opens somewhere."));
             bedroom.Items.Add(new Item("Cell Phone", "5 missed calls, 6 unread messages. All mention you needing to be somewhere fast!"));
             bedroom.exits.Add("e", bathroom);
             bedroom.exits.Add("s", kitchen);
             _rooms.Add(bedroom);
 
-            bathroom.Items.Add(new Item("Toothpaste & Toothbrush", "Flavor: BubbleGum. 'Thanks Mom...'"));
-            bathroom.Items.Add(new Item("Deoderant", "Kinda-Sorta Newish Spice: Cilantro scent."));
+            bathroom.Items.Add(new Item("Toothpaste & Toothbrush", "You brush your teeth.   Flavor: BubbleGum. 'Thanks Mom...'"));
+            bathroom.Items.Add(new Item("Deoderant", "You apply deoderant.  Kinda-Sorta Newish Spice: Cilantro scent."));
             bathroom.exits.Add("w", bedroom);
             _rooms.Add(bathroom);
 
-            kitchen.Items.Add(new Item("Orange Juice", "Freshly squeezed, extra pulp, extra peel."));
-            kitchen.Items.Add(new Item("Car Keys", "The first step in being super fast and super furious."));
+            kitchen.Items.Add(new Item("Orange Juice", "You drink the OJ.   Freshly squeezed, extra pulp, extra peel."));
+            kitchen.Items.Add(new Item("Car Keys", "You jingle the keys.   The first step in being super fast and super furious."));
             kitchen.exits.Add("n", bedroom);
             kitchen.exits.Add("w", garage);
             _rooms.Add(kitchen);
@@ -182,7 +215,7 @@ Quit Quits the Game");
             garage.exits.Add("w", car);
             _rooms.Add(garage);
 
-            car.Items.Add(new Item("Taco Bell Doritos Locos Taco", "How long has this been here??"));
+            car.Items.Add(new Item("Taco Bell Doritos Locos Taco", "You eat the taco and then realize, 'I haven't ordered taco bell for over a month!"));
             car.exits.Add("e", garage);
             _rooms.Add(car);
 
