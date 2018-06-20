@@ -98,7 +98,7 @@ namespace CastleGrimtol.Project
                         break;
                     case "look":
                         Console.Clear();
-                        System.Console.WriteLine($"{CurrentRoom.Name}: {CurrentRoom.Description}.");
+                        System.Console.WriteLine($"You are in the {CurrentRoom.Name}: {CurrentRoom.Description}.");
                         System.Console.WriteLine("In the room you find:");
                         if (CurrentRoom.Items.Count > 0)
                         {
@@ -115,17 +115,21 @@ namespace CastleGrimtol.Project
                         }
                         break;
                     case "help":
+                        Console.Clear();
                         System.Console.WriteLine(@"
-Go <Direction> Moves the player from room to room
-Use <ItemName> Uses an item in a room or from your inventory
-Take <ItemName> Places an item into the player inventory and removes it from the room
-Quit Quits the Game");
+        Possible Actions
+Look - Examines your current surroundings
+Go <Direction> - Moves the player from room to room
+Use <ItemName> - Uses an item in a room or from your inventory
+Take <ItemName> - Places an item into the player inventory and removes it from the room
+Quit - Quits the Game");
                         break;
                     case "take":
                         Console.Clear();
                         TakeItem(input[1]);
                         break;
                     case "use":
+                        Console.Clear();
                         UseItem(input[1]);
                         break;
                     case "quit":
@@ -150,6 +154,13 @@ Quit Quits the Game");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             CreateRooms();
+            Console.WriteLine(@"
+With a jolt, you awake. You open your eyes and find yourself knotted in blankets on your bed. Light fills your bedroom through the window, it is morning, and once again you've slept through your alarm. You're late! 
+            
+You hear a buzzing sound coming from your phone located on the floor across the room, next to a pile of your clothes and the garage door opener. You had better check your phone!
+
+Goal: Get dressed and do all other 'prepare for the day' tasks, get in your car, and drive away
+            ");
         }
         public void TakeItem(string itemName)
         {
@@ -172,18 +183,29 @@ Quit Quits the Game");
         }
         public void UseItem(string itemName)
         {
-          
-                var item = CurrentPlayer.Inventory.Find(i => i.Name.Contains(itemName));
 
-                if (CurrentPlayer.Inventory.Contains(item))
-                {
-                    System.Console.WriteLine($"{item.Description}");
-                }
-                if (!CurrentPlayer.Inventory.Contains(item))
-                {
-                    System.Console.WriteLine("You don't have the item you are trying to use.");
-                }
-            
+
+            var item = CurrentPlayer.Inventory.Find(i => i.Name.ToLower().Contains(itemName));
+            if (CurrentPlayer.Inventory.Contains(item))
+            {
+                System.Console.WriteLine($"{item.Description}");
+            }
+            else
+            {
+                System.Console.WriteLine("You don't have the item you are trying to use.");
+            }
+
+
+
+            // var item = CurrentPlayer.Inventory.Find(i => i.Name.Contains(itemName));
+
+            // if (CurrentPlayer.Inventory.Contains(item))
+            // {
+            // }
+            // if (!CurrentPlayer.Inventory.Contains(item))
+            // {
+            // }
+
         }
         public void CreateRooms()
         {
