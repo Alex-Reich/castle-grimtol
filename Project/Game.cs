@@ -125,17 +125,24 @@ Quit - Quits the Game");
                         break;
                     case "take":
                         Console.Clear();
-                        TakeItem(input[1]);
-                        break;
-                    case "use":
-                        Console.Clear();
-                        if (input[1] != null)
+                        if (input.Length == 1)
                         {
-                            UseItem(input[1]);
+                            System.Console.WriteLine("You must enter an item name alongide the 'take' command");
                         }
                         else
                         {
+                            TakeItem(input[1]);
+                        }
+                        break;
+                    case "use":
+                        Console.Clear();
+                        if (input.Length == 1)
+                        {
                             System.Console.WriteLine("You must enter an item name alongside the 'use' command");
+                        }
+                        else
+                        {
+                            UseItem(input[1]);
                         }
                         break;
                     case "i":
@@ -160,7 +167,8 @@ Quit - Quits the Game");
                     case "sleep":
                         playing = false;
                         Console.Clear();
-                        System.Console.WriteLine("You decide to go back to sleep, dismissing the troubles and stresses of the day. The consequences of your actions will certainly be a problem for 'future you,' but for now, you choose to return to seize the day and return to sleep. YOU ARE A WINNER!");
+                        System.Console.WriteLine("You decide to go back to sleep, dismissing the troubles and stresses of the day. The consequences of your actions will certainly be a problem for 'future you,' but for now, you choose to return to seize the day and return to sleep.");
+                        System.Console.WriteLine("YOU ARE A WINNER!");
                         break;
                     default:
                         System.Console.WriteLine("Please enter a proper action. Type 'help' if you are stuck");
@@ -213,8 +221,9 @@ For a list of possible actions type 'help'
             {
                 if (item.Name == "Car Keys" && CurrentRoom.Name == "Car")
                 {
-                    Console.WriteLine("You insert the keys into the ignition and fire up the engine. You throw it into reverse and gun it, leaving tire marks in your garage. You're on your way; mission accomplished!");
-                    System.Console.WriteLine("YOU WIN!!");
+                    Console.Write(@"You insert the keys into the ignition and fire up the engine. You throw it into reverse and gun it, leaving tire marks in your garage. You're on your way; mission accomplished!
+                                       ----------YOU WIN----------");
+                    System.Console.WriteLine("");
                     System.Console.WriteLine("But did you complete all the daily tasks before you left?? Play again to try and finish everything before leaving the house.");
                     System.Console.WriteLine("Start over? y/n");
                     // if (Console.Read() == 'n') {var playing = false; };
@@ -238,18 +247,18 @@ For a list of possible actions type 'help'
 
             bedroom.Items.Add(new Item("Clothes", "You put on your favorite shirt and shorts... for the fifth day in a row."));
             bedroom.Items.Add(new Item("Garage Door Opener", "A garage door opens somewhere."));
-            bedroom.Items.Add(new Item("Cell Phone", "5 missed calls, 6 unread messages. All mention you needing to be somewhere fast!"));
+            bedroom.Items.Add(new Item("Cell Phone", "5 missed calls, 6 unread messages. All notifications mention you needing to be somewhere an hour ago!"));
             bedroom.exits.Add("e", bathroom);
             bedroom.exits.Add("s", kitchen);
             _rooms.Add(bedroom);
 
-            bathroom.Items.Add(new Item("Toothpaste & Toothbrush", "You brush your teeth.   Flavor: BubbleGum. 'Thanks Mom...'"));
-            bathroom.Items.Add(new Item("Deoderant", "You apply deoderant.  Kinda-Sorta Newish Spice: Cilantro scent."));
+            bathroom.Items.Add(new Item("Toothpaste & Toothbrush", "You brush your teeth and feel fresh.   Flavor: BubbleGum. 'Thanks Mom...'"));
+            bathroom.Items.Add(new Item("Deoderant", "You apply deoderant and your odor improves.  Kinda-Sorta Newish Spice: Cilantro scent."));
             bathroom.exits.Add("w", bedroom);
             _rooms.Add(bathroom);
 
-            kitchen.Items.Add(new Item("Orange Juice", "You drink the OJ.   Freshly squeezed, extra pulp, extra peel."));
-            kitchen.Items.Add(new Item("Car Keys", "You jingle the keys.   The first step in being super fast and super furious."));
+            kitchen.Items.Add(new Item("Orange Juice", "You drink some OJ straight from the jug, like a real man does.   Freshly squeezed, extra pulp, extra peel."));
+            kitchen.Items.Add(new Item("Car Keys", "You jingle the keys. Nothing happens..."));
             kitchen.exits.Add("n", bedroom);
             kitchen.exits.Add("w", garage);
             _rooms.Add(kitchen);
@@ -258,7 +267,7 @@ For a list of possible actions type 'help'
             garage.exits.Add("w", car);
             _rooms.Add(garage);
 
-            car.Items.Add(new Item("Taco Bell Doritos Locos Taco", "You eat the taco and then realize that you haven't ordered taco bell for over a month!"));
+            car.Items.Add(new Item("Taco Bell Doritos Locos Taco", "You eat the mysterious, random taco. You immediately regret your choice and your stomach already hates you. In fact, you feel so bad that you decide you can't leave after all. You stumble back to bed and stay there for the whole day. YOU LOSE!"));
             car.exits.Add("e", garage);
             _rooms.Add(car);
 
