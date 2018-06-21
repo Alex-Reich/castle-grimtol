@@ -65,8 +65,8 @@ When You are finished please submit the url for your github repo to the gradeboo
 
 ### Alex's Plan
 Goal: Get dressed and do all other "prepare for the day" tasks, get in car, and drive away
-Fail: Eat taco found in car.
-Jump to win: Sleep
+Fail: "Use taco" found in car
+Jump to win: "Sleep" in bedroom
 Items: Car key, clothes, cell phone; other everyday task objects
 Rooms:
     -Bedroom
@@ -81,8 +81,8 @@ Uses:
   -Remote Garage Door Opener: found in bedroom, opens garage door. 
   -Deoderant: found in bathroom. use anywhere. Player applies deoderant.
   -Toothpaste & toothbrush: use in bathroom. Player brushes teeth.
-  -Orange Juice: found in kitchen. If drank after brushing teeth player loses 1 health.
-  -Taco Bell Doritos Locos Taco: found in car. use anywhere. Player gains 1 health, then later loses 5 health. 
+  -Orange Juice: found in kitchen. Player drinks OJ. 
+  -Taco Bell Doritos Locos Taco: found in car. use anywhere. Player gets sick and loses the game.
   -Cell Phone: found in bedroom. use anywhere. Tells current time, 5 missed calls, 6 unread messages. All mention you needing to be somewhere fast! Player puts phone away after using.
 
 Start:

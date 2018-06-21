@@ -17,95 +17,97 @@ namespace CastleGrimtol.Project
             // playing = true;
             while (playing)
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                System.Console.Write("What would you like to do? ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
+                System.Console.Write("What would you like to do? ");
+                Console.ForegroundColor = ConsoleColor.White;
                 string userInput = Console.ReadLine();
                 string[] input = userInput.ToLower().Split(" ");
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                 switch (input[0])
+                Console.ForegroundColor = ConsoleColor.Blue;
+                switch (input[0])
                 {
                     case "go":
                         if (input.Length == 1)
                         {
                             Console.Clear();
-                            System.Console.WriteLine("You must enter a direction alongside the 'go' command");   
+                            System.Console.WriteLine("You must enter a direction alongside the 'go' command");
                         }
-                        else {
+                        else
+                        {
 
-                        if (input[1] == "n")
-                        {
-                            var validRoom = CurrentRoom.Go(input[1]);
-                            if (validRoom != null)
+                            if (input[1] == "n")
                             {
-                                CurrentRoom = CurrentRoom.Go(input[1]);
-                                Console.Clear();
-                                System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
+                                var validRoom = CurrentRoom.Go(input[1]);
+                                if (validRoom != null)
+                                {
+                                    CurrentRoom = CurrentRoom.Go(input[1]);
+                                    Console.Clear();
+                                    System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    System.Console.WriteLine("That is not a valid direction from this room.");
+                                    System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
+                                }
                             }
-                            else
+                            if (input[1] == "e")
                             {
-                                Console.Clear();
-                                System.Console.WriteLine("That is not a valid direction from this room.");
-                                System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
+                                var validRoom = CurrentRoom.Go(input[1]);
+                                if (validRoom != null)
+                                {
+                                    CurrentRoom = CurrentRoom.Go(input[1]);
+                                    Console.Clear();
+                                    System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    System.Console.WriteLine("That is not a valid direction from this room.");
+                                    System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}.");
+                                }
                             }
-                        }
-                        if (input[1] == "e")
-                        {
-                            var validRoom = CurrentRoom.Go(input[1]);
-                            if (validRoom != null)
+                            if (input[1] == "s")
                             {
-                                CurrentRoom = CurrentRoom.Go(input[1]);
-                                Console.Clear();
-                                System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
+                                var validRoom = CurrentRoom.Go(input[1]);
+                                if (validRoom != null)
+                                {
+                                    CurrentRoom = CurrentRoom.Go(input[1]);
+                                    Console.Clear();
+                                    System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    System.Console.WriteLine("That is not a valid direction from this room.");
+                                    System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
+                                }
                             }
-                            else
+                            if (input[1] == "w")
                             {
-                                Console.Clear();
-                                System.Console.WriteLine("That is not a valid direction from this room.");
-                                System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}.");
+                                var validRoom = CurrentRoom.Go(input[1]);
+                                if (validRoom != null)
+                                {
+                                    CurrentRoom = CurrentRoom.Go(input[1]);
+                                    Console.Clear();
+                                    System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    System.Console.WriteLine("That is not a valid direction from this room.");
+                                    System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
+                                }
                             }
-                        }
-                        if (input[1] == "s")
-                        {
-                            var validRoom = CurrentRoom.Go(input[1]);
-                            if (validRoom != null)
-                            {
-                                CurrentRoom = CurrentRoom.Go(input[1]);
-                                Console.Clear();
-                                System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
-                            }
-                            else
-                            {
-                                Console.Clear();
-                                System.Console.WriteLine("That is not a valid direction from this room.");
-                                System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
-                            }
-                        }
-                        if (input[1] == "w")
-                        {
-                            var validRoom = CurrentRoom.Go(input[1]);
-                            if (validRoom != null)
-                            {
-                                CurrentRoom = CurrentRoom.Go(input[1]);
-                                Console.Clear();
-                                System.Console.WriteLine($"You are now in the {CurrentRoom.Name}. {CurrentRoom.Description}");
-                            }
-                            else
-                            {
-                                Console.Clear();
-                                System.Console.WriteLine("That is not a valid direction from this room.");
-                                System.Console.WriteLine($"You are currently in the {CurrentRoom.Name}: {CurrentRoom.Description}");
-                            }
-                        }
-                        // else
-                        // {
-                        //     System.Console.WriteLine("That is not a valid direction. Possible directions are n e s w.");
-                        // }
+                            // else
+                            // {
+                            //     System.Console.WriteLine("That is not a valid direction. Possible directions are n e s w.");
+                            // }
                         }
                         break;
                     case "look":
                         Console.Clear();
                         System.Console.WriteLine($"You are in the {CurrentRoom.Name}: {CurrentRoom.Description}.");
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         System.Console.WriteLine("In the room you find:");
                         if (CurrentRoom.Items.Count > 0)
                         {
@@ -114,6 +116,7 @@ namespace CastleGrimtol.Project
                             {
                                 Console.WriteLine(i.Name);
                             }
+                            Console.ForegroundColor = ConsoleColor.Blue;
                         }
                         else
                         {
@@ -131,6 +134,7 @@ Go <Direction> - Moves the player from room to room
 Use <ItemName> - Uses an item in a room or from your inventory
 Take <ItemName> - Places an item into the player inventory and removes it from the room
 i - Lists items in your inventory
+Goal - Displays objective of game
 Quit - Quits the Game");
                         break;
                     case "take":
@@ -158,11 +162,14 @@ Quit - Quits the Game");
                     case "i":
                         if (CurrentPlayer.Inventory.Count > 0)
                         {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine("You are currently holding:");
                             foreach (var i in CurrentPlayer.Inventory)
                             {
                                 Console.WriteLine(i.Name);
                             }
+                            Console.ForegroundColor = ConsoleColor.Blue;
                         }
                         else
                         {
@@ -174,11 +181,31 @@ Quit - Quits the Game");
                         Console.Clear();
                         System.Console.WriteLine("Thanks for playing!");
                         break;
+
                     case "sleep":
-                        playing = false;
+                        if (CurrentRoom.Name == "Bedroom")
+                        {
+                            playing = false;
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            System.Console.WriteLine("You decide to go back to sleep, dismissing the troubles and stresses of the day. The consequences of your actions will certainly be a problem for 'future you,' but for now, you choose to seize the day and return to sleep.");
+                            System.Console.WriteLine("----------YOU ARE A WINNER!----------");
+                            System.Console.WriteLine("Start over? y/n");
+                            string again = Console.ReadLine().ToLower();
+                            if (again == "y") { Console.Clear(); Reset(); };
+                            if (again == "n") { playing = false; };
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            System.Console.WriteLine("So you know the secret command, eh? Well too bad for you, you can't sleep in this room!");
+                        }
+                        break;
+                    case "goal":
                         Console.Clear();
-                        System.Console.WriteLine("You decide to go back to sleep, dismissing the troubles and stresses of the day. The consequences of your actions will certainly be a problem for 'future you,' but for now, you choose to return to seize the day and return to sleep.");
-                        System.Console.WriteLine("YOU ARE A WINNER!");
+                        System.Console.WriteLine(@"Goal: Get dressed and do all the other 'prepare for the day' tasks. Then get in your car and drive away
+For a list of possible actions type 'help'");
                         break;
                     default:
                         System.Console.WriteLine("Please enter a proper action. Type 'help' if you are stuck");
@@ -186,23 +213,25 @@ Quit - Quits the Game");
                 }
 
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public void Reset()
         {
-            Setup();
+            Play();
         }
 
         public void Setup()
         {
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.ForegroundColor = ConsoleColor.Blue;
             CreateRooms();
+            playing = true;
             Console.WriteLine(@"
 With a jolt, you awake. You open your eyes and find yourself knotted in blankets on your bed. Light fills your bedroom through the window, it is morning, and once again you've slept through your alarm. You're late! 
             
 You hear a buzzing sound coming from your phone located on the floor across the room, next to a pile of your clothes and the garage door opener. You had better check your phone!
 
-Goal: Get dressed and do all the other 'prepare for the day' tasks, get in your car, and drive away
+Goal: Get dressed and do all the other 'prepare for the day' tasks. Then get in your car and drive away
 For a list of possible actions type 'help'
             ");
         }
