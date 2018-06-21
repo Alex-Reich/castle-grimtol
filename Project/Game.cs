@@ -5,7 +5,7 @@ namespace CastleGrimtol.Project
 {
     public class Game : IGame
     {
-
+        public bool playing { get; set; } = true;
         public Room CurrentRoom { get; set; }
         public Player CurrentPlayer { get; set; }
         private List<Room> _rooms = new List<Room>();
@@ -14,16 +14,25 @@ namespace CastleGrimtol.Project
         {
             Setup();
 
-            bool playing = true;
+            // playing = true;
             while (playing)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 System.Console.Write("What would you like to do? ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 string userInput = Console.ReadLine();
                 string[] input = userInput.ToLower().Split(" ");
-
-                switch (input[0])
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                 switch (input[0])
                 {
                     case "go":
+                        if (input.Length == 1)
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("You must enter a direction alongside the 'go' command");   
+                        }
+                        else {
+
                         if (input[1] == "n")
                         {
                             var validRoom = CurrentRoom.Go(input[1]);
@@ -92,6 +101,7 @@ namespace CastleGrimtol.Project
                         // {
                         //     System.Console.WriteLine("That is not a valid direction. Possible directions are n e s w.");
                         // }
+                        }
                         break;
                     case "look":
                         Console.Clear();
@@ -222,11 +232,32 @@ For a list of possible actions type 'help'
                 if (item.Name == "Car Keys" && CurrentRoom.Name == "Car")
                 {
                     Console.Write(@"You insert the keys into the ignition and fire up the engine. You throw it into reverse and gun it, leaving tire marks in your garage. You're on your way; mission accomplished!
-                                       ----------YOU WIN----------");
+                    ----------YOU WIN----------");
                     System.Console.WriteLine("");
-                    System.Console.WriteLine("But did you complete all the daily tasks before you left?? Play again to try and finish everything before leaving the house.");
+                    System.Console.WriteLine("But did you complete all the daily tasks before you left?? (i.e. Getting dressed, brushing your teeth, etc.) Play again to try and finish everything before leaving the house.");
                     System.Console.WriteLine("Start over? y/n");
-                    // if (Console.Read() == 'n') {var playing = false; };
+                    string input = Console.ReadLine().ToLower();
+                    if (input == "y") { Console.Clear(); Reset(); };
+                    if (input == "n") { playing = false; };
+                    return;
+                }
+                if (item.Name == "Taco Bell Doritos Locos Taco")
+                {
+                    System.Console.WriteLine(item.Description);
+                    System.Console.WriteLine((@"
+                    UH-OH...
+                    
+                    You immediately regret your decision to eat this random taco as your stomach begins to grumble. 
+                    
+                    Before you have time to think, you double over in pain and slowly stumble your way to the bathroom. 
+                    
+                    You don't make it out of the house, you don't pass go, and you don't collect $200.
+                    
+                    --------YOU LOSE!--------
+                    Start over? y/n"));
+                    string input = Console.ReadLine().ToLower();
+                    if (input == "y") { Console.Clear(); Reset(); };
+                    if (input == "n") { playing = false; };
                     return;
                 }
                 System.Console.WriteLine($"{item.Description}");
@@ -267,7 +298,7 @@ For a list of possible actions type 'help'
             garage.exits.Add("w", car);
             _rooms.Add(garage);
 
-            car.Items.Add(new Item("Taco Bell Doritos Locos Taco", "You eat the mysterious, random taco. You immediately regret your choice and your stomach already hates you. In fact, you feel so bad that you decide you can't leave after all. You stumble back to bed and stay there for the whole day. YOU LOSE!"));
+            car.Items.Add(new Item("Taco Bell Doritos Locos Taco", "You don't know where it came from or how long it's been in your car, but you eat the mysterious, random taco anyway."));
             car.exits.Add("e", garage);
             _rooms.Add(car);
 

@@ -65,6 +65,8 @@ When You are finished please submit the url for your github repo to the gradeboo
 
 ### Alex's Plan
 Goal: Get dressed and do all other "prepare for the day" tasks, get in car, and drive away
+Fail: Eat taco found in car.
+Jump to win: Sleep
 Items: Car key, clothes, cell phone; other everyday task objects
 Rooms:
     -Bedroom
